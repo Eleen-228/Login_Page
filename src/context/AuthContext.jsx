@@ -16,7 +16,7 @@ export const AuthContextProvider = ({ children }) => {
 				setUser({ ...user, displayName: username })
 			})
 			.catch(error => {
-				console.log(error)
+				console.log('error found')
 			})
 	}
 	const logout = () => signOut(auth)
