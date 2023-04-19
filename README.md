@@ -1,6 +1,6 @@
 # Login Page [Go to Page](https://eleen-228.github.io/Login_Page/)
 
-A project to build a login page
+A project to build login, registration and user center pages.
 
 ## Purpose
 
