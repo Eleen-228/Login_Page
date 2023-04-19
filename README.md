@@ -18,4 +18,4 @@ FullCalendar is imported for calendar section of the user center page. That allo
 
 ## Project Status
 
-As of now, this project has not yet completed. I am still working on the functionality of signing up an account using google, twitter and facebook accounts. As well as elaborating other subsections of the user center page.
+As of now, this project has not yet been completed. I am still working on the functionalities of signing up an account using google, twitter and facebook accounts with firebase. As well as the function to remove an existed account and elaborating other subsections of the user center page.
