@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
 	const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
-			console.log(currentUser)
+			// console.log(currentUser)
 			setUser(currentUser)
 		})
 		return () => unsubscribe()

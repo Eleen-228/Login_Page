@@ -18,7 +18,15 @@ const Header = () => {
 	}
 	return (
 		<Box sx={{ display: 'flex', justifyContent: 'end' }}>
-			<Box sx={{ m: '20px 50px 0 0', borderBottom: `2px solid ${theme.palette.primary.main}`, width: '150px', display: 'flex', justifyContent: 'space-evenly' }}>
+			<Box
+				sx={{
+					m: '20px 50px 0 0',
+					width: '150px',
+					display: 'flex',
+					justifyContent: 'space-evenly',
+					bgcolor: theme.palette.background.dark,
+					borderRadius: '10px ',
+				}}>
 				<Tooltip title="Theme Mode">
 					<IconButton onClick={colorMode.toggleColorMode}>
 						{theme.palette.mode === 'light' ? <DarkModeIcon sx={{ width: '40px' }} /> : <LightModeIcon sx={{ width: '40px' }} />}

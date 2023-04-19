@@ -37,7 +37,7 @@ const SideBar = () => {
 				</MenuItem>
 				{!collapsed ? (
 					<Box sx={{ mt: 1 }}>
-						<img src={`/asset/avatar.png`} alt="avatar" width="100px" height="100px" style={{ cursor: 'pointer' }} />
+						<img src={`./asset/avatar.png`} alt="avatar" width="100px" height="100px" style={{ cursor: 'pointer' }} />
 					</Box>
 				) : (
 					<IconButton>

@@ -17,14 +17,14 @@ const Register = () => {
 		setVisible(!visible)
 	}
 	const handleFormSubmit = async (values, { resetForm }) => {
-		console.log(values)
+		// console.log(values)
 		try {
 			await createUser(values.email, values.password, values.username)
 			await resetForm()
 			await navigate('/user_center')
 		} catch (error) {
 			setError(error.message)
-			console.log(error.message)
+			// console.log(error.message)
 		}
 	}
 	const initialValues = {
