@@ -1,0 +1,19 @@
+/* COMMON CSS */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+html {
+	--fc-list-event-hover-bg-color: #888888 !important;
+}
+body {
+	background: no-repeat center center fixed url('../public/asset/backgroundImage.jpeg');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+a:active,
+a:visited {
+	color: #fffafa;
+}
+.underline:hover {
+	text-decoration: underline !important;
+}
