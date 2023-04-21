@@ -23,7 +23,6 @@ function App() {
 		[]
 	)
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
-
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
@@ -38,12 +37,12 @@ function App() {
 								{/* ROUTES */}
 								<Routes>
 									<Route path="/login" element={<Login />} />
-									<Route path="/register" element={<Register />} />
 									<Route path="user_center/*" element={<UserCenter />}>
 										<Route path="profile" element={<Profile />} />
 										<Route path="reminder" element={<Reminder />} />
 										<Route path="calendar" element={<Calendar />} />
 									</Route>
+									<Route path="/register" element={<Register />} />
 									<Route path="/" element={<Navigate to="/login" />} />
 								</Routes>
 							</Container>
