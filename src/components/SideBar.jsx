@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import PersonIcon from '@mui/icons-material/Person'
-import ChecklistRtlIcon from '@mui/icons-material/ChecklistRtl'
+import SettingsIcon from '@mui/icons-material/Settings'
 import EventIcon from '@mui/icons-material/Event'
 import { UserContext } from '../context/AuthContext'
 const SideBar = () => {
@@ -47,11 +47,11 @@ const SideBar = () => {
 				<MenuItem icon={<PersonIcon />} component={<ReactLink />} to="/user_center/profile">
 					Profile
 				</MenuItem>
-				<MenuItem icon={<ChecklistRtlIcon />} component={<ReactLink />} to="/user_center/reminder">
-					Account Settings
-				</MenuItem>
 				<MenuItem icon={<EventIcon />} component={<ReactLink />} to="/user_center/calendar">
 					Calendar
+				</MenuItem>
+				<MenuItem icon={<SettingsIcon />} component={<ReactLink />} to="/user_center/reminder">
+					Account Settings
 				</MenuItem>
 			</Menu>
 		</Sidebar>

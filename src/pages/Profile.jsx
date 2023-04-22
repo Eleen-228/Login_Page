@@ -45,27 +45,34 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 			<TopBar children="Profile" />
 			<Box display="grid" mt={5}>
 				<form onSubmit={handleChangesSubmit}>
-					<Box display="grid" gridTemplateColumns="2fr 2fr 2fr 1fr" mb={2}>
+					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 2fr" mb={2} alignItems="center">
 						<Typography>Username:</Typography>
-						<Typography>{user.displayName}</Typography>
 						<TextField
+							label={user.displayName}
 							disabled={ableUsername}
 							value={values.username}
+							color={ableUsername ? 'info' : undefined}
 							onBlur={disallowUsernameEdit}
 							onChange={e => setValues({ ...values, username: e.target.value })}
 						/>
 						<EditIcon onClick={allowUsernameEdit} cursor="pointer" />
 					</Box>
-					<Box display="grid" gridTemplateColumns="2fr 2fr 2fr 1fr" mb={2}>
+					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 2fr" mb={2} alignItems="center">
 						<Typography>Email: </Typography>
-						<Typography>{user.email}</Typography>
-						<TextField disabled={ableEmail} value={values.email} onBlur={disallowEmailEdit} onChange={e => setValues({ ...values, email: e.target.value })} />
+						<TextField
+							label={user.email}
+							disabled={ableEmail}
+							value={values.email}
+							onBlur={disallowEmailEdit}
+							onChange={e => setValues({ ...values, email: e.target.value })}
+						/>
 						<EditIcon onClick={allowEmailEdit} cursor="pointer" />
 					</Box>
-					<Box display="grid" gridTemplateColumns="2fr 5fr 0.5fr">
+					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 2fr" alignItems="center">
 						<Typography>Password:</Typography>
 						<TextField
 							type={visible ? 'text' : 'password'}
+							label="New Password"
 							disabled={ablePassword}
 							value={values.password}
 							onBlur={disallowPasswordEdit}
@@ -79,6 +86,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 							}}
 						/>
 						<EditIcon onClick={allowPasswordEdit} cursor="pointer" />
+						<Typography color="warning.main">Password must be 8 to 16 characters</Typography>
 					</Box>
 					<Box mt={5}>
 						<Button variant="contained" type="submit">
