@@ -4,11 +4,11 @@ import { Box, useTheme, Container } from '@mui/material'
 import SideBar from '../components/SideBar'
 import Profile from './Profile'
 import Calendar from './Calendar'
-import Reminder from './Reminder'
+import Settings from './Settings'
 import { UserContext } from '../context/AuthContext'
 const UserCenter = () => {
 	const theme = useTheme()
-	const { user } = useContext(UserContext)
+	const { user, removeAccount, error, setError, changeEmail, changePassword, changeUsername } = useContext(UserContext)
 	return (
 		<Box
 			sx={{
@@ -26,8 +26,8 @@ const UserCenter = () => {
 					<SideBar />
 					<Container sx={{ overflow: 'auto' }}>
 						<Routes>
-							<Route path="/profile" element={<Profile />} />
-							<Route path="/reminder" element={<Reminder />} />
+							<Route path="/profile" element={<Profile user={user} changeEmail={changeEmail} changePassword={changePassword} changeUsername={changeUsername} />} />
+							<Route path="/reminder" element={<Settings removeAccount={removeAccount} error={error} setError={setError} />} />
 							<Route path="/calendar" element={<Calendar />} />
 						</Routes>
 					</Container>

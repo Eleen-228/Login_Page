@@ -20,8 +20,9 @@ const Register = () => {
 		// console.log(values)
 		try {
 			await createUser(values.email, values.password, values.username)
-			await resetForm()
-			await navigate('/user_center')
+			resetForm()
+			navigate('/user_center')
+			setError('')
 		} catch (error) {
 			setError(error.message)
 			// console.log(error.message)

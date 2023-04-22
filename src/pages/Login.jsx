@@ -30,6 +30,7 @@ const Login = () => {
 			await login(values.email, values.password)
 			resetForm()
 			navigate('/user_center')
+			setError('')
 			// console.log('Form submitted', values)
 		} catch (e) {
 			console.log(e.message)
@@ -44,7 +45,11 @@ const Login = () => {
 		e.preventDefault()
 	}
 	const handleGoogleLogin = async () => {
-		await googleLogin()
+		try {
+			await googleLogin()
+		} catch (e) {
+			console.log('error', e.message)
+		}
 	}
 	return (
 		<>
@@ -113,6 +118,7 @@ const Login = () => {
 										</Button>
 									</Box>
 									{error === 'Firebase: Error (auth/wrong-password).' && <Typography color="error.main">Wrong email or password</Typography>}
+									{error === 'Firebase: Error (auth/user-not-found).' && <Typography color="error.main">User Not Found</Typography>}
 									<Box>
 										<Link to="/register" style={{ color: '#fffafa', textDecoration: 'none', fontSize: '14px' }} className="underline">
 											Register an Account

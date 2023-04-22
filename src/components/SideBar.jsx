@@ -48,7 +48,7 @@ const SideBar = () => {
 					Profile
 				</MenuItem>
 				<MenuItem icon={<ChecklistRtlIcon />} component={<ReactLink />} to="/user_center/reminder">
-					Reminder
+					Account Settings
 				</MenuItem>
 				<MenuItem icon={<EventIcon />} component={<ReactLink />} to="/user_center/calendar">
 					Calendar
