@@ -24,8 +24,10 @@ export const AuthContextProvider = ({ children }) => {
 			await updateProfile(auth.currentUser, { displayName: username })
 			setUser({ ...user, displayName: username })
 			console.log('Profile updated')
+			setError('')
 		} catch (error) {
 			console.log('error found')
+			setError(error.message)
 		}
 	}
 	const changeUsername = async username => {
@@ -35,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Username Updated')
 		} catch (error) {
 			console.log('Fail to update username')
+			setError(error.message)
 		}
 	}
 	const changeEmail = async email => {
@@ -44,6 +47,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Email Changed')
 		} catch (error) {
 			console.log('Fail to update email', error.message)
+			setError(error.message)
 		}
 	}
 	const changePassword = async newPassword => {
@@ -53,6 +57,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Password Changed')
 		} catch (error) {
 			console.log('Fail to update password', error.message)
+			setError(error.message)
 		}
 	}
 	const logout = () => signOut(auth)

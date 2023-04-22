@@ -24,7 +24,7 @@ const SideBar = () => {
 					height: '95%',
 				},
 			}}>
-			<Menu menuItemStyles={{ button: { '&:hover': { backgroundColor: theme.palette.background.dark } } }}>
+			<Menu menuItemStyles={{ button: { '&:hover': { backgroundColor: theme.palette.background.dark }, textAlign: 'left' } }}>
 				<MenuItem onClick={() => collapseSidebar()} icon={collapsed ? <ArrowForwardIosIcon /> : undefined}>
 					{!collapsed && (
 						<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

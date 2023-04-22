@@ -44,8 +44,8 @@ const Register = () => {
 		email: yup.string().email('Invalid email').required('required'),
 		password: yup
 			.string()
-			.matches(/^[a-zA-Z0-9!@#$%^&*]{8,16}$/, 'Password can only be 8 to 16 characters')
-			.min(8)
+			.matches(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/, 'Password can only be 6 to 16 characters')
+			.min(6)
 			.required('required'),
 		passwordConfirmation: yup
 			.string()

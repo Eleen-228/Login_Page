@@ -26,7 +26,19 @@ const UserCenter = () => {
 					<SideBar />
 					<Container sx={{ overflow: 'auto' }}>
 						<Routes>
-							<Route path="/profile" element={<Profile user={user} changeEmail={changeEmail} changePassword={changePassword} changeUsername={changeUsername} />} />
+							<Route
+								path="/profile"
+								element={
+									<Profile
+										user={user}
+										changeEmail={changeEmail}
+										changePassword={changePassword}
+										changeUsername={changeUsername}
+										error={error}
+										setError={setError}
+									/>
+								}
+							/>
 							<Route path="/reminder" element={<Settings removeAccount={removeAccount} error={error} setError={setError} />} />
 							<Route path="/calendar" element={<Calendar />} />
 						</Routes>

@@ -4,13 +4,12 @@ import TopBar from '../components/TopBar'
 import EditIcon from '@mui/icons-material/Edit'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
+const Profile = ({ user, changeEmail, changePassword, changeUsername, error, setError }) => {
 	const [values, setValues] = useState({ username: '', email: '', password: '' })
 	const [ableUsername, setAbleUsername] = useState(true)
 	const [ableEmail, setAbleEmail] = useState(true)
 	const [ablePassword, setAblePassword] = useState(true)
 	const [visible, setVisible] = useState(false)
-
 	const allowUsernameEdit = () => {
 		setAbleUsername(false)
 	}
@@ -22,12 +21,18 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 	}
 	const disallowEmailEdit = () => {
 		setAbleEmail(true)
+		if (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(values.email)) {
+			setError('')
+		}
 	}
 	const allowPasswordEdit = () => {
 		setAblePassword(false)
 	}
 	const disallowPasswordEdit = () => {
 		setAblePassword(true)
+		if (values.password.length >= 6) {
+			setError('')
+		}
 	}
 
 	const handleVisibility = () => {
@@ -35,11 +40,18 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 	}
 	const handleChangesSubmit = e => {
 		e.preventDefault()
-		changeEmail(values.email)
-		changePassword(values.password)
-		changeUsername(values.username)
-		setValues({ username: '', email: '', password: '' })
+		if (values.username) {
+			changeUsername(values.username)
+		}
+		if (values.email) {
+			changeEmail(values.email)
+		}
+		if (values.password) {
+			changePassword(values.password)
+		}
 	}
+
+	console.log(error)
 	return (
 		<Container>
 			<TopBar children="Profile" />
@@ -51,7 +63,6 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 							label={user.displayName}
 							disabled={ableUsername}
 							value={values.username}
-							color={ableUsername ? 'info' : undefined}
 							onBlur={disallowUsernameEdit}
 							onChange={e => setValues({ ...values, username: e.target.value })}
 						/>
@@ -60,6 +71,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 2fr" mb={2} alignItems="center">
 						<Typography>Email: </Typography>
 						<TextField
+							type="email"
 							label={user.email}
 							disabled={ableEmail}
 							value={values.email}
@@ -67,9 +79,11 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 							onChange={e => setValues({ ...values, email: e.target.value })}
 						/>
 						<EditIcon onClick={allowEmailEdit} cursor="pointer" />
+						{error === 'Firebase: Error (auth/requires-recent-login).' && <Typography color="error">Please login in again for email update</Typography>}
+						{error === 'Firebase: Error (auth/invalid-email).' && <Typography color="error">Invalid email</Typography>}
 					</Box>
 					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 2fr" alignItems="center">
-						<Typography>Password:</Typography>
+						<Typography>Password (6 to 16 characters):</Typography>
 						<TextField
 							type={visible ? 'text' : 'password'}
 							label="New Password"
@@ -86,9 +100,11 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 							}}
 						/>
 						<EditIcon onClick={allowPasswordEdit} cursor="pointer" />
-						<Typography color="warning.main">Password must be 8 to 16 characters</Typography>
+						{error === 'Firebase: Password should be at least 6 characters (auth/weak-password).' ? (
+							<Typography color="error">Password should be at least 6 characters</Typography>
+						) : undefined}
 					</Box>
-					<Box mt={5}>
+					<Box m="30px 0 24px">
 						<Button variant="contained" type="submit">
 							Save Profile Changes
 						</Button>
