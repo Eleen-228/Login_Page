@@ -38,8 +38,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 		changeEmail(values.email)
 		changePassword(values.password)
 		changeUsername(values.username)
-		e.target.reset()
-		console.log(e.target)
+		setValues({ username: '', email: '', password: '' })
 	}
 	return (
 		<Container>
