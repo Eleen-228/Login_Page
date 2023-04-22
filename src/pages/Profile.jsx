@@ -5,11 +5,12 @@ import EditIcon from '@mui/icons-material/Edit'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
-	const [values, setValues] = useState({})
+	const [values, setValues] = useState({ username: '', email: '', password: '' })
 	const [ableUsername, setAbleUsername] = useState(true)
 	const [ableEmail, setAbleEmail] = useState(true)
 	const [ablePassword, setAblePassword] = useState(true)
 	const [visible, setVisible] = useState(false)
+
 	const allowUsernameEdit = () => {
 		setAbleUsername(false)
 	}
@@ -28,17 +29,17 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 	const disallowPasswordEdit = () => {
 		setAblePassword(true)
 	}
-	const handleSaveChanges = () => {
-		changeEmail(values.email)
-		changePassword(values.password)
-		changeUsername(values.username)
-	}
+
 	const handleVisibility = () => {
 		setVisible(!visible)
 	}
 	const handleChangesSubmit = e => {
 		e.preventDefault()
+		changeEmail(values.email)
+		changePassword(values.password)
+		changeUsername(values.username)
 		e.target.reset()
+		console.log(e.target)
 	}
 	return (
 		<Container>
@@ -46,7 +47,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 			<Box display="grid" mt={5}>
 				<form onSubmit={handleChangesSubmit}>
 					<Box display="grid" gridTemplateColumns="2fr 2fr 2fr 1fr" mb={2}>
-						<Typography spanColum="span 12">Username:</Typography>
+						<Typography>Username:</Typography>
 						<Typography>{user.displayName}</Typography>
 						<TextField
 							disabled={ableUsername}
@@ -81,7 +82,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername }) => {
 						<EditIcon onClick={allowPasswordEdit} cursor="pointer" />
 					</Box>
 					<Box mt={5}>
-						<Button variant="contained" onClick={handleSaveChanges}>
+						<Button variant="contained" type="submit">
 							Save Profile Changes
 						</Button>
 					</Box>
