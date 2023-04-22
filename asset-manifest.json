@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Login_Page/static/css/main.80d9af9d.css",
-    "main.js": "/Login_Page/static/js/main.c5103a37.js",
-    "static/media/backgroundImage.jpeg": "/Login_Page/static/media/backgroundImage.f100e5ec11b4eb6bf10d.jpeg",
-    "index.html": "/Login_Page/index.html",
-    "main.80d9af9d.css.map": "/Login_Page/static/css/main.80d9af9d.css.map",
-    "main.c5103a37.js.map": "/Login_Page/static/js/main.c5103a37.js.map"
+    "main.css": "/Registration_Login_UserCenter_Pages/static/css/main.331e78c7.css",
+    "main.js": "/Registration_Login_UserCenter_Pages/static/js/main.64744344.js",
+    "static/media/backgroundImage.jpeg": "/Registration_Login_UserCenter_Pages/static/media/backgroundImage.f100e5ec11b4eb6bf10d.jpeg",
+    "index.html": "/Registration_Login_UserCenter_Pages/index.html",
+    "main.331e78c7.css.map": "/Registration_Login_UserCenter_Pages/static/css/main.331e78c7.css.map",
+    "main.64744344.js.map": "/Registration_Login_UserCenter_Pages/static/js/main.64744344.js.map"
   },
   "entrypoints": [
-    "static/css/main.80d9af9d.css",
-    "static/js/main.c5103a37.js"
+    "static/css/main.331e78c7.css",
+    "static/js/main.64744344.js"
   ]
 }
