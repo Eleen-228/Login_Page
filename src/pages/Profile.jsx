@@ -36,7 +36,6 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, se
 			setError({ ...errors, invalidPassword: '' })
 		}
 	}
-
 	const handleVisibility = () => {
 		setVisible(!visible)
 	}

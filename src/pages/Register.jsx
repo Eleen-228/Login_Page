@@ -14,7 +14,6 @@ const Register = () => {
 	const [visible, setVisible] = useState(false)
 	const { createUser, errors, setError, user } = useContext(UserContext)
 	const { acctCreateErr } = errors
-	console.log('aacacat', acctCreateErr, user)
 	const toggleVisibility = () => {
 		setVisible(!visible)
 	}
