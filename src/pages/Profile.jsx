@@ -21,7 +21,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, error, set
 	}
 	const disallowEmailEdit = () => {
 		setAbleEmail(true)
-		if (/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(values.email)) {
+		if (/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/.test(values.email)) {
 			setError('')
 		}
 	}
