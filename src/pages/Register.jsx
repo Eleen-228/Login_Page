@@ -12,7 +12,7 @@ const Register = () => {
 	const theme = useTheme()
 	const navigate = useNavigate()
 	const [visible, setVisible] = useState(false)
-	const { createUser, errors, setError, user } = useContext(UserContext)
+	const { createUser, errors, setError } = useContext(UserContext)
 	const { acctCreateErr } = errors
 	const toggleVisibility = () => {
 		setVisible(!visible)
