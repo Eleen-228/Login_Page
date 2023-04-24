@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Registration_Login_UserCenter_Pages/static/css/main.331e78c7.css",
-    "main.js": "/Registration_Login_UserCenter_Pages/static/js/main.008c7541.js",
+    "main.js": "/Registration_Login_UserCenter_Pages/static/js/main.5d63ab01.js",
     "static/media/backgroundImage.jpeg": "/Registration_Login_UserCenter_Pages/static/media/backgroundImage.f100e5ec11b4eb6bf10d.jpeg",
     "index.html": "/Registration_Login_UserCenter_Pages/index.html",
     "main.331e78c7.css.map": "/Registration_Login_UserCenter_Pages/static/css/main.331e78c7.css.map",
-    "main.008c7541.js.map": "/Registration_Login_UserCenter_Pages/static/js/main.008c7541.js.map"
+    "main.5d63ab01.js.map": "/Registration_Login_UserCenter_Pages/static/js/main.5d63ab01.js.map"
   },
   "entrypoints": [
     "static/css/main.331e78c7.css",
-    "static/js/main.008c7541.js"
+    "static/js/main.5d63ab01.js"
   ]
 }
