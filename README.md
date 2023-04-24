@@ -12,10 +12,10 @@ Material UI is one of the most popular UI tools being used by frontend developer
 
 In addition, formik and yup were used in this project for form controls and validations. Able to utilize formik and yup simplified the complexity of creating a form by implementing their build-in form state management, validation and error handling.
 
-Firebase is used on this project for login authentication that uses email/password and google sign in.
+Firebase is used on this project for login authentication that uses either basic email/password sign in or google sign in. Account users also have the options to delete their accounts; change their username, email and password from the user center.
 
 FullCalendar is imported for calendar section of the user center page. That allows user to add any events to the calendar and remove any existed one from the calendar.
 
 ## Project Status
 
-As of now, this project has not yet been completed. I am still working on the functionalities of signing up an account using google, twitter and facebook accounts with firebase. As well as the function to remove an existed account and elaborating other subsections of the user center page.
+Most functions of the pages have been achieved. Any additional functionalities might be add afterward.

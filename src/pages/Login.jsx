@@ -16,7 +16,8 @@ const Login = () => {
 	const theme = useTheme()
 	const [visible, setVisible] = useState(false)
 	const navigate = useNavigate()
-	const { login, error, setError, googleLogin, user } = useContext(UserContext)
+	const { login, errors, setError, googleLogin, user } = useContext(UserContext)
+	const { loginErr } = errors
 	const initialValues = {
 		email: '',
 		password: '',
@@ -30,11 +31,11 @@ const Login = () => {
 			await login(values.email, values.password)
 			resetForm()
 			navigate('/user_center')
-			setError('')
+			setError({ ...errors, loginErr: '' })
 			// console.log('Form submitted', values)
 		} catch (e) {
 			console.log(e.message)
-			setError(e.message)
+			setError({ ...errors, loginErr: e.message })
 		}
 	}
 	const toggleVisibility = e => {
@@ -117,8 +118,12 @@ const Login = () => {
 											<LockOpenIcon />
 										</Button>
 									</Box>
-									{error === 'Firebase: Error (auth/wrong-password).' && <Typography color="error.main">Wrong email or password</Typography>}
-									{error === 'Firebase: Error (auth/user-not-found).' && <Typography color="error.main">User Not Found</Typography>}
+									{loginErr === 'Firebase: Error (auth/wrong-password).' && <Typography color="error.main">Wrong email or password</Typography>}
+									{loginErr === 'Firebase: Error (auth/user-not-found).' && <Typography color="error.main">User Not Found</Typography>}
+									{loginErr ===
+										'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).' && (
+										<Typography color="error.main">Too many failed attempts, please sign in later</Typography>
+									)}
 									<Box>
 										<Link to="/register" style={{ color: '#fffafa', textDecoration: 'none', fontSize: '14px' }} className="underline">
 											Register an Account

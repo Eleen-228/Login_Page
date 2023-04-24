@@ -12,20 +12,20 @@ const Register = () => {
 	const theme = useTheme()
 	const navigate = useNavigate()
 	const [visible, setVisible] = useState(false)
-	const { createUser, setError, error } = useContext(UserContext)
+	const { createUser, errors, setError, user } = useContext(UserContext)
+	const { acctCreateErr } = errors
+	console.log('aacacat', acctCreateErr, user)
 	const toggleVisibility = () => {
 		setVisible(!visible)
 	}
 	const handleFormSubmit = async (values, { resetForm }) => {
-		// console.log(values)
 		try {
 			await createUser(values.email, values.password, values.username)
 			resetForm()
 			navigate('/user_center')
-			setError('')
-		} catch (error) {
-			setError(error.message)
-			// console.log(error.message)
+			setError({ ...errors, acctCreateErr: '' })
+		} catch (e) {
+			setError({ ...errors, acctCreateErr: e.message })
 		}
 	}
 	const initialValues = {
@@ -202,10 +202,10 @@ const Register = () => {
 									</Button>
 								</Box>
 								<Typography color="error.dark">
-									{error === 'Firebase: Error (auth/email-already-in-use).' ? 'An account already exist with this email' : undefined}
+									{acctCreateErr === 'Firebase: Error (auth/email-already-in-use).' ? 'An account already exist with this email' : undefined}
 								</Typography>
 								<ReactLink style={{ color: '#fffafa', textDecoration: 'none', fontSize: '14px' }} to="/login" className="underline">
-									Already have an Account
+									Already have an Account ?
 								</ReactLink>
 							</Box>
 						</form>

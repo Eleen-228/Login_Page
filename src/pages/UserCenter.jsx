@@ -8,7 +8,7 @@ import Settings from './Settings'
 import { UserContext } from '../context/AuthContext'
 const UserCenter = () => {
 	const theme = useTheme()
-	const { user, removeAccount, error, setError, changeEmail, changePassword, changeUsername } = useContext(UserContext)
+	const { user, removeAccount, errors, setError, changeEmail, changePassword, changeUsername } = useContext(UserContext)
 	return (
 		<Box
 			sx={{
@@ -34,12 +34,12 @@ const UserCenter = () => {
 										changeEmail={changeEmail}
 										changePassword={changePassword}
 										changeUsername={changeUsername}
-										error={error}
+										errors={errors}
 										setError={setError}
 									/>
 								}
 							/>
-							<Route path="/reminder" element={<Settings removeAccount={removeAccount} error={error} setError={setError} />} />
+							<Route path="/settings" element={<Settings removeAccount={removeAccount} errors={errors} setError={setError} />} />
 							<Route path="/calendar" element={<Calendar />} />
 						</Routes>
 					</Container>

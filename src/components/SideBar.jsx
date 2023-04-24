@@ -50,7 +50,7 @@ const SideBar = () => {
 				<MenuItem icon={<EventIcon />} component={<ReactLink />} to="/user_center/calendar">
 					Calendar
 				</MenuItem>
-				<MenuItem icon={<SettingsIcon />} component={<ReactLink />} to="/user_center/reminder">
+				<MenuItem icon={<SettingsIcon />} component={<ReactLink />} to="/user_center/settings">
 					Account Settings
 				</MenuItem>
 			</Menu>

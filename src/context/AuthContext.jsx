@@ -16,18 +16,27 @@ import {
 export const UserContext = createContext({ createUser: () => {} })
 export const provider = new GoogleAuthProvider()
 export const AuthContextProvider = ({ children }) => {
-	const [user, setUser] = useState({})
-	const [error, setError] = useState('')
+	const [user, setUser] = useState(null)
+	const [errors, setError] = useState({
+		acctCreateErr: '',
+		profileUpdateErr: '',
+		chgeUsernameErr: '',
+		loginErr: '',
+		invalidPassword: '',
+		timeoutErr: '',
+		emailErr: '',
+	})
+
 	const createUser = async (email, password, username) => {
+		await createUserWithEmailAndPassword(auth, email, password)
 		try {
-			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser, { displayName: username })
 			setUser({ ...user, displayName: username })
 			console.log('Profile updated')
-			setError('')
+			setError({ ...errors, profileUpdateErr: '' })
 		} catch (error) {
-			console.log('error found')
-			setError(error.message)
+			console.log('fail to update profile')
+			setError({ ...errors, profileUpdateErr: error.message })
 		}
 	}
 	const changeUsername = async username => {
@@ -37,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Username Updated')
 		} catch (error) {
 			console.log('Fail to update username')
-			setError(error.message)
+			setError({ ...errors, chgeUsernameErr: error.message })
 		}
 	}
 	const changeEmail = async email => {
@@ -47,7 +56,8 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Email Changed')
 		} catch (error) {
 			console.log('Fail to update email', error.message)
-			setError(error.message)
+			setError({ ...errors, emailErr: error.message })
+			console.log(errors)
 		}
 	}
 	const changePassword = async newPassword => {
@@ -57,9 +67,11 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('Password Changed')
 		} catch (error) {
 			console.log('Fail to update password', error.message)
-			setError(error.message)
+			setError({ ...errors, invalidPassword: error.message })
+			console.log(errors)
 		}
 	}
+
 	const logout = () => signOut(auth)
 	const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
 	const googleLogin = () => signInWithPopup(auth, provider)
@@ -72,7 +84,7 @@ export const AuthContextProvider = ({ children }) => {
 		return () => unsubscribe()
 	}, [])
 	return (
-		<UserContext.Provider value={{ createUser, user, logout, login, setError, error, googleLogin, removeAccount, changeEmail, changePassword, changeUsername }}>
+		<UserContext.Provider value={{ createUser, user, logout, login, setError, errors, googleLogin, removeAccount, changeEmail, changePassword, changeUsername }}>
 			{children}
 		</UserContext.Provider>
 	)

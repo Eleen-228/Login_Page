@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
@@ -27,6 +27,9 @@ const AccountLoginMenu = ({ open, setAnchorEl, anchorEl }) => {
 	}
 	const handleProfile = () => {
 		navigate('/user_center/profile')
+	}
+	const handleSettings = () => {
+		navigate('/user_center/settings')
 	}
 	return (
 		<Menu
@@ -79,7 +82,11 @@ const AccountLoginMenu = ({ open, setAnchorEl, anchorEl }) => {
 				</ListItemIcon>
 				Profile
 			</MenuItem>
-			<MenuItem onClick={handleCLose}>
+			<MenuItem
+				onClick={() => {
+					handleCLose()
+					handleSettings()
+				}}>
 				<ListItemIcon>
 					<Settings />
 				</ListItemIcon>
