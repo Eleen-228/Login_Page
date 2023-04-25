@@ -31,7 +31,7 @@ export const AuthContextProvider = ({ children }) => {
 		await createUserWithEmailAndPassword(auth, email, password)
 		try {
 			await updateProfile(auth.currentUser, { displayName: username })
-			setUser({ ...user, displayName: username })
+			setUser({ displayName: username, email, password })
 			console.log('Profile updated')
 			setError({ ...errors, profileUpdateErr: '' })
 		} catch (error) {
@@ -57,7 +57,7 @@ export const AuthContextProvider = ({ children }) => {
 		} catch (error) {
 			console.log('Fail to update email', error.message)
 			setError({ ...errors, emailErr: error.message })
-			console.log(errors)
+			// console.log(errors)
 		}
 	}
 	const changePassword = async newPassword => {
@@ -66,9 +66,8 @@ export const AuthContextProvider = ({ children }) => {
 			setUser({ ...user, password: newPassword })
 			console.log('Password Changed')
 		} catch (error) {
-			console.log('Fail to update password', error.message)
+			// console.log('Fail to update password', error.message)
 			setError({ ...errors, invalidPassword: error.message })
-			console.log(errors)
 		}
 	}
 
@@ -78,7 +77,7 @@ export const AuthContextProvider = ({ children }) => {
 	const removeAccount = () => deleteUser(user)
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
-			console.log(currentUser)
+			// console.log(currentUser)
 			setUser(currentUser)
 		})
 		return () => unsubscribe()

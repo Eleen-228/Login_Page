@@ -51,7 +51,6 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, se
 		e.preventDefault()
 		values.password && changePassword(values.password)
 	}
-
 	return (
 		<Container>
 			<TopBar children="Profile" />
