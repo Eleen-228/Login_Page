@@ -7,12 +7,14 @@ import EmailIcon from '@mui/icons-material/Email'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { UserContext } from '../context/AuthContext'
+import { ResponsiveContext } from '../context/ResponsiveContext'
 
 const Register = () => {
 	const theme = useTheme()
 	const navigate = useNavigate()
 	const [visible, setVisible] = useState(false)
 	const { createUser, errors, setError } = useContext(UserContext)
+	const { isMobile } = useContext(ResponsiveContext)
 	const { acctCreateErr } = errors
 	const toggleVisibility = () => {
 		setVisible(!visible)
@@ -56,7 +58,7 @@ const Register = () => {
 		<Box
 			sx={{
 				boxShadow: theme.shadows,
-				width: '60%',
+				width: isMobile ? '100%' : '60%',
 				borderRadius: '10px',
 				textAlign: 'center',
 				display: 'flex',

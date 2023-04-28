@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import TopBar from '../components/TopBar'
 import AddTaskIcon from '@mui/icons-material/AddTask'
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove'
-const Calendar = () => {
+const Calendar = ({ isMobile }) => {
 	const theme = useTheme()
 	const [openAddModal, setOpenAddModal] = useState(false)
 	const [openRemoveModal, setOpenRemoveModal] = useState(false)
@@ -54,15 +54,21 @@ const Calendar = () => {
 	return (
 		<Grid container>
 			<TopBar children="Calendar" />
-			<Container sx={{ '& .fc .fc-list-sticky .fc-list-day>*': { background: 'none ' } }}>
+			<Container
+				sx={{
+					'& .fc .fc-list-sticky .fc-list-day>*': { background: 'none ' },
+					'& .fc .fc-toolbar': { flexDirection: isMobile && 'column' },
+					'& .fc-toolbar-chunk': { mb: 1 },
+				}}>
 				<FullCalendar
 					plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
 					initialView="dayGridMonth"
-					headerToolbar={{ left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,listWeek' }}
+					headerToolbar={{ left: isMobile ? 'title' : 'prev,next today', center: isMobile ? 'prev,next today' : 'title', right: 'dayGridMonth,timeGridWeek,listWeek' }}
 					selectable={true}
 					editable={true}
 					select={handleAddEvent}
 					eventClick={handleEventRemove}
+					contentHeight={isMobile ? '300px' : '500px'}
 				/>
 				{/* ADD EVENT MODAL */}
 				<Modal open={openAddModal} onClose={handleAddClose}>

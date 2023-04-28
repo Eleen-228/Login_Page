@@ -4,7 +4,7 @@ A project to build login, registration and user center pages.
 
 ## Purpose
 
-The goal of this login page is to practice and be familiar with how these frontend tools/libraries coordinate with React: Material UI, formik, yup, firebase, and fullcalendar.
+The goal of this login page is to practice and be familiar with how these frontend tools/libraries coordinate with React: Material UI, react-Pro-Sidebar, formik, yup, firebase, and fullcalendar.
 
 ## Details
 
@@ -15,6 +15,8 @@ In addition, formik and yup were used in this project for form controls and vali
 Firebase is used on this project for login authentication that uses either basic email/password sign in or google sign in. Account users also have the options to delete their accounts; change their username, email and password from the user center.
 
 FullCalendar is imported for calendar section of the user center page. That allows user to add any events to the calendar and remove any existed one from the calendar.
+
+React-Pro-Sidebar is another good library I used to create navigator inside the user center page for sub sections navigation. This library supports React-Router-DOM components which allow users switching among different sub sections of the user center page.
 
 ## Project Status
 

@@ -4,14 +4,13 @@ import TopBar from '../components/TopBar'
 import EditIcon from '@mui/icons-material/Edit'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, setError }) => {
+const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, setError, isMobile }) => {
 	const [values, setValues] = useState({ username: '', email: '', password: '' })
 	const [ableUsername, setAbleUsername] = useState(true)
 	const [ableEmail, setAbleEmail] = useState(true)
 	const [ablePassword, setAblePassword] = useState(true)
 	const [visible, setVisible] = useState(false)
 	const { emailErr, invalidPassword } = errors
-
 	const allowUsernameEdit = () => {
 		setAbleUsername(false)
 	}
@@ -54,45 +53,45 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, se
 	return (
 		<Container>
 			<TopBar children="Profile" />
-			<Box display="grid" mt={5}>
+			<Box display="grid" mt={isMobile ? 2 : 5}>
 				<form>
-					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 0.5fr 2fr" mb={2} alignItems="center" textAlign="left">
+					<Box display="grid" sx={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 2fr 0.5fr 0.5fr 2fr', gap: isMobile && 1 }} mb={2} alignItems="center" textAlign="left">
 						<Typography>Username:</Typography>
 						<TextField
 							label={user.displayName}
-							disabled={ableUsername}
+							disabled={isMobile ? false : ableUsername}
 							value={values.username}
 							onBlur={disallowUsernameEdit}
 							onChange={e => setValues({ ...values, username: e.target.value })}
 						/>
-						<EditIcon onClick={allowUsernameEdit} cursor="pointer" />
+						{!isMobile && <EditIcon onClick={allowUsernameEdit} cursor="pointer" />}
 						<Button variant="contained" onClick={handleUsernameChange}>
 							Save
 						</Button>
 					</Box>
-					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 0.5fr 2fr" mb={2} alignItems="center" textAlign="left">
+					<Box display="grid" sx={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 2fr 0.5fr 0.5fr 2fr', gap: isMobile && 1 }} mb={2} alignItems="center" textAlign="left">
 						<Typography>Email: </Typography>
 						<TextField
 							type="email"
 							label={user.email}
-							disabled={ableEmail}
+							disabled={isMobile ? false : ableEmail}
 							value={values.email}
 							onBlur={disallowEmailEdit}
 							onChange={e => setValues({ ...values, email: e.target.value })}
 						/>
-						<EditIcon onClick={allowEmailEdit} cursor="pointer" />
+						{!isMobile && <EditIcon onClick={allowEmailEdit} cursor="pointer" />}
 						<Button variant="contained" onClick={handleEmailChange}>
 							Save
 						</Button>
 						{emailErr === 'Firebase: Error (auth/requires-recent-login).' && <Typography color="error">Please login in again for email update</Typography>}
 						{emailErr === 'Firebase: Error (auth/invalid-email).' && <Typography color="error">Invalid email</Typography>}
 					</Box>
-					<Box display="grid" gridTemplateColumns="2fr 2fr 0.5fr 0.5fr 2fr" alignItems="center" textAlign="left">
+					<Box display="grid" sx={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 2fr 0.5fr 0.5fr 2fr', gap: isMobile && 1 }} alignItems="center" textAlign="left">
 						<Typography>Password (6 to 16 characters):</Typography>
 						<TextField
 							type={visible ? 'text' : 'password'}
 							label="New Password"
-							disabled={ablePassword}
+							disabled={isMobile ? false : ablePassword}
 							value={values.password}
 							onBlur={disallowPasswordEdit}
 							onChange={e => setValues({ ...values, password: e.target.value })}
@@ -104,7 +103,7 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, se
 								),
 							}}
 						/>
-						<EditIcon onClick={allowPasswordEdit} cursor="pointer" />
+						{!isMobile && <EditIcon onClick={allowPasswordEdit} cursor="pointer" />}
 						<Button variant="contained" onClick={handlePasswordChange}>
 							Save
 						</Button>

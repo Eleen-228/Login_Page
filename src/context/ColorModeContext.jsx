@@ -6,14 +6,14 @@ export const getDesignTokens = mode => ({
 			? {
 					//palette values for dark mode
 					primary: { main: '#3c3c3c' },
-					background: { main: 'rgba(60,60,60, 0.7)', light: 'rgba(168,168,168, .8)', dark: 'rgba(72,72,72, .8)' },
+					background: { main: 'rgb(60,60,60)', light: 'rgb(168,168,168)', dark: 'rgb(72,72,72)' },
 					success: { main: '#ece9df' },
 					secondary: { main: '#ece9df' },
 			  }
 			: {
 					//palette values for light mode
 					primary: { main: '#dedede' },
-					background: { main: 'rgba(222,222,222, 0.4)', light: 'rgba(248,248,248, .8)', dark: 'rgba(192,192,192, .8)' },
+					background: { main: 'rgb(222,222,222)', light: 'rgb(248,248,248)', dark: 'rgb(192,192,192)' },
 					success: { main: '#f5f5f5' },
 					secondary: { main: '#818181' },
 			  }),

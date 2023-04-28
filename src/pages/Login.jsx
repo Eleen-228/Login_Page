@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
 import { TextField, Button, InputAdornment, Typography, Box, IconButton, useTheme } from '@mui/material'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 import FacebookIcon from '@mui/icons-material/Facebook'
@@ -7,16 +7,17 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import GoogleIcon from '@mui/icons-material/Google'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import UserCenter from './UserCenter'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { UserContext } from '../context/AuthContext'
+import { ResponsiveContext } from '../context/ResponsiveContext'
 
 const Login = () => {
 	const theme = useTheme()
 	const [visible, setVisible] = useState(false)
 	const navigate = useNavigate()
 	const { login, errors, setError, googleLogin, user } = useContext(UserContext)
+	const { isMobile } = useContext(ResponsiveContext)
 	const { loginErr } = errors
 	const initialValues = {
 		email: '',
@@ -52,14 +53,15 @@ const Login = () => {
 			console.log('error', e.message)
 		}
 	}
+
 	return (
 		<>
 			{user ? (
-				<UserCenter />
+				<Navigate to="/user_center" />
 			) : (
 				<Box
 					boxShadow={theme.shadows}
-					width="45%"
+					width={isMobile ? '100%' : '45%'}
 					height="500px"
 					borderRadius="10px"
 					textAlign="center"

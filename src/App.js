@@ -13,6 +13,7 @@ import Calendar from './pages/Calendar'
 import Settings from './pages/Settings'
 import { ColorModeContext, getDesignTokens } from './context/ColorModeContext'
 import { AuthContextProvider } from './context/AuthContext'
+import { ResponsiveContextProvider } from './context/ResponsiveContext'
 
 function App() {
 	const [mode, setMode] = useState('light')
@@ -27,27 +28,29 @@ function App() {
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<AuthContextProvider>
-					<ProSidebarProvider>
-						<CssBaseline />
-						<div className="app">
-							{/* HEADER */}
-							<Header />
-							{/* MAIN SECTION */}
-							<Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px' }}>
-								{/* ROUTES */}
-								<Routes>
-									<Route path="/login/*" element={<Login />} />
-									<Route path="user_center/*" element={<UserCenter />}>
-										<Route path="profile" element={<Profile />} />
-										<Route path="reminder" element={<Settings />} />
-										<Route path="calendar" element={<Calendar />} />
-									</Route>
-									<Route path="/register" element={<Register />} />
-									<Route path="/" element={<Navigate to="/login" />} />
-								</Routes>
-							</Container>
-						</div>
-					</ProSidebarProvider>
+					<ResponsiveContextProvider>
+						<ProSidebarProvider>
+							<CssBaseline />
+							<div className="app">
+								{/* HEADER */}
+								<Header />
+								{/* MAIN SECTION */}
+								<Container sx={{ display: 'flex', justifyContent: 'center', mt: '65px', overflow: 'hidden' }}>
+									{/* ROUTES */}
+									<Routes>
+										<Route path="/login/*" element={<Login />} />
+										<Route path="user_center/*" element={<UserCenter />}>
+											<Route path="profile" element={<Profile />} />
+											<Route path="reminder" element={<Settings />} />
+											<Route path="calendar" element={<Calendar />} />
+										</Route>
+										<Route path="/register" element={<Register />} />
+										<Route path="/" element={<Navigate to="/login" />} />
+									</Routes>
+								</Container>
+							</div>
+						</ProSidebarProvider>
+					</ResponsiveContextProvider>
 				</AuthContextProvider>
 			</ThemeProvider>
 		</ColorModeContext.Provider>

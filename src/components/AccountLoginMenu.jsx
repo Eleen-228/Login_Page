@@ -63,7 +63,7 @@ const AccountLoginMenu = ({ open, setAnchorEl, anchorEl }) => {
 						transform: 'translateY(-50%) rotate(45deg)',
 						zIndex: 0,
 					},
-					backgroundColor: theme.palette.background.main,
+					backgroundColor: theme.palette.background.dark,
 				},
 			}}
 			transformOrigin={{ horizontal: 'right', vertical: 'top' }}
