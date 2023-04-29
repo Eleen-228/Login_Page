@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link as ReactLink } from 'react-router-dom'
+import { Link as ReactLink, useLocation } from 'react-router-dom'
 import { Box, Typography, IconButton, Avatar } from '@mui/material'
 import { Sidebar, Menu, MenuItem, sidebarClasses, useProSidebar } from 'react-pro-sidebar'
 import { useTheme } from '@mui/material'
@@ -21,6 +21,8 @@ const SideBar = ({ isMobile, sidebarState }) => {
 			console.log(error)
 		}
 	}
+	const location = useLocation()
+	console.log(location)
 	return (
 		<Sidebar
 			backgroundColor={theme.palette.background.light}
@@ -32,13 +34,20 @@ const SideBar = ({ isMobile, sidebarState }) => {
 			}}
 			defaultCollapsed={isMobile ? true : false}
 			width={isMobile ? '100%' : undefined}>
-			<Menu menuItemStyles={{ button: { '&:hover': { backgroundColor: theme.palette.background.dark }, textAlign: 'left' } }}>
+			<Menu
+				menuItemStyles={{
+					button: {
+						'&:hover': { backgroundColor: theme.palette.background.dark },
+						textAlign: 'left',
+					},
+				}}>
 				<MenuItem
 					onClick={() => {
 						collapseSidebar()
 						sidebarState(!collapsed)
 					}}
-					icon={collapsed ? <ArrowForwardIosIcon /> : undefined}>
+					icon={collapsed ? <ArrowForwardIosIcon /> : undefined}
+					active={true}>
 					{!collapsed && (
 						<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 							<Typography variant="h3">Hi {user && user.displayName}</Typography>
@@ -57,7 +66,7 @@ const SideBar = ({ isMobile, sidebarState }) => {
 						<Avatar />
 					</IconButton>
 				)}
-				<MenuItem icon={<PersonIcon />} component={<ReactLink />} to="/user_center/profile">
+				<MenuItem icon={<PersonIcon />} component={<ReactLink />} to="/user_center/profile" active={true}>
 					Profile
 				</MenuItem>
 				<MenuItem icon={<EventIcon />} component={<ReactLink />} to="/user_center/calendar">

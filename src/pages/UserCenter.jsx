@@ -15,7 +15,6 @@ const UserCenter = () => {
 	const sidebarState = isCollapsed => {
 		setCollapsed(isCollapsed)
 	}
-
 	return (
 		<>
 			{user ? (
@@ -35,6 +34,20 @@ const UserCenter = () => {
 					<SideBar isMobile={isMobile} sidebarState={sidebarState} />
 					<Container sx={{ overflow: 'auto', display: isMobile && collapsed === false ? 'none' : 'block' }}>
 						<Routes>
+							<Route
+								index
+								element={
+									<Profile
+										user={user}
+										changeEmail={changeEmail}
+										changePassword={changePassword}
+										changeUsername={changeUsername}
+										errors={errors}
+										setError={setError}
+										isMobile={isMobile}
+									/>
+								}
+							/>
 							<Route
 								path="/profile"
 								element={

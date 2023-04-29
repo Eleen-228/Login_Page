@@ -4,6 +4,7 @@ import TopBar from '../components/TopBar'
 import EditIcon from '@mui/icons-material/Edit'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+
 const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, setError, isMobile }) => {
 	const [values, setValues] = useState({ username: '', email: '', password: '' })
 	const [ableUsername, setAbleUsername] = useState(true)
@@ -116,4 +117,5 @@ const Profile = ({ user, changeEmail, changePassword, changeUsername, errors, se
 		</Container>
 	)
 }
+
 export default Profile
