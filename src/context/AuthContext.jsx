@@ -16,6 +16,7 @@ import {
 export const UserContext = createContext({ createUser: () => {} })
 export const provider = new GoogleAuthProvider()
 export const AuthContextProvider = ({ children }) => {
+	const [initializing, setInitializing] = useState(true)
 	const [user, setUser] = useState(null)
 	const [errors, setError] = useState({
 		acctCreateErr: '',
@@ -79,11 +80,12 @@ export const AuthContextProvider = ({ children }) => {
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			// console.log(currentUser)
 			setUser(currentUser)
+			initializing && setInitializing(false)
 		})
 		return () => unsubscribe()
 	}, [])
 	return (
-		<UserContext.Provider value={{ createUser, user, logout, login, setError, errors, googleLogin, removeAccount, changeEmail, changePassword, changeUsername }}>
+		<UserContext.Provider value={{ createUser, user, logout, login, setError, errors, googleLogin, removeAccount, changeEmail, changePassword, changeUsername, initializing }}>
 			{children}
 		</UserContext.Provider>
 	)

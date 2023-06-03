@@ -16,7 +16,7 @@ const Login = () => {
 	const theme = useTheme()
 	const [visible, setVisible] = useState(false)
 	const navigate = useNavigate()
-	const { login, errors, setError, googleLogin, user } = useContext(UserContext)
+	const { login, errors, setError, googleLogin, user, initializing } = useContext(UserContext)
 	const { isMobile } = useContext(ResponsiveContext)
 	const { loginErr } = errors
 	const initialValues = {
@@ -53,7 +53,7 @@ const Login = () => {
 			console.log('error', e.message)
 		}
 	}
-
+	if (initializing) return null
 	return (
 		<>
 			{user ? (
